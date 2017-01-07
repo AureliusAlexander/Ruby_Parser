@@ -2,28 +2,32 @@
 
 grammar Sexp
 
-	rule integer
-		('+' / '-')? [0-9]+ <IntegerLiteral>
-	end
-	
-	rule float
-		('+' / '-')? [0-9]+ (('.' [0-9]+) / ('e' [0-9]+)) <FloatLiteral>
-	end
-	
-	rule string
-		'"' (.)* '"' <StringLiteral>
-	end
-	
-	rule identifier
-		[a-zA-Z]
-	end
+  rule expression
+    space? '(' body ')' space? <Expression>
+  end
+  
+  rule body
+    (expression / identifier / float / integer / string / space )* <Body>
+  end
 
-	rule expression
-		space? '(' body ')' space? <Expression>
-	end
-	
-	ruly body
-		(eypression / identifier / float / integer / string / space)* <body>
-	end
-	
+  rule integer
+    ('+' / '-')? [0-9]+ <IntegerLiteral>
+  end
+  
+  rule float
+    ('+' / '-')? [0-9]+ (('.' [0-9]+) / ('e' [0-9]+)) <FloatLiteral>
+  end
+  
+  rule string
+    '"' ([^"\\] / "\\" . )* '"' <StringLiteral>
+  end
+  
+  rule identifier
+    [a-zA-Z\=\*] [a-zA-Z0-9_\=\*]* <Identifier>
+  end
+
+  rule space
+    [\s]+
+  end
+  
 end
