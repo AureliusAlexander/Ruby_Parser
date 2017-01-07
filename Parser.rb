@@ -2,13 +2,11 @@
 
 require 'treetop'
 
-base_path = File.expand_path(File.dirname("C:\Users\Alexander\Desktop\Schule\Info\FA\Programm"))
-
-require File.join(base_path, 'node_extensions.rb')
+require File.expand_path(File.join(File.dirname(__FILE__), 'node_extensions.rb'))
 
 class Parser
 
-	Treetop.load(File.join(base_path, 'sexp_parser.treetop'))
+	Treetop.load(File.expand_path(File.join(File.dirname(__FILE__), 'sexp_parser.treetop')))
 	@@parser = SexpParser.new
 	
 	def self.parse(data)
@@ -32,7 +30,6 @@ class Parser
 		end
 	
 end
-
 Parser.parse('this is a test 1 2.3')
 
 gets.chomp
