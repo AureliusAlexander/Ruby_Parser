@@ -30,6 +30,4 @@ class Parser
 		end
 	
 end
-Parser.parse('this is a test 1 2.3')
-
-gets.chomp
+Parser.parse('(this is a test 1 2.3)')

@@ -16,13 +16,13 @@ module Sexp
 	
 	class FloatLiteral < Treetop::Runtime::SyntaxNode
 		def to_array
-			return eval self.text_value
+			return eval self.text_value.to_f
 		end
 	end
 	
 	class Identifier < Treetop::Runtime::SyntaxNode
 		def to_array
-			return eval self.text_value.to_f
+			return eval self.text_value.to_sym
 		end
 	end
 	
